@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Ask</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Just Ask</h1>
+            </div>
+            <div class="theme-toggle">
+                <i class="fas fa-moon" id="theme-toggle-btn"></i>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="file-preview" id="file-preview"></div>
+        <div class="chat-input">
+            <div class="input-actions">
+                <label for="file-upload" class="file-upload-label">
+                    <i class="fas fa-paperclip"></i>
+                </label>
+                <input type="file" id="file-upload" accept=".txt,.js,.py,.html,.css,.json,image/*" multiple>
+            </div>
+            <textarea id="user-input" placeholder="Ask me anything about coding..."></textarea>
+            <button onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Load scripts at the end of body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
