@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyApsIuH4tX8RfyOv9LW6VLXPhfFjtIZllo';
+const API_KEY = 'AIzaSyBAt5k-jHg8zoOxAA9t0kJ7KfzHzVa_iRc';
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 let isDarkMode = false;
