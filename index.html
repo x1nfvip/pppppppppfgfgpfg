@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ask Zeno </title>
+    <meta name="description" content="Ask Zeno - Your AI assistant for all your questions">
+    <title>Ask Zeno</title>
+    
+    <!-- External Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js" defer></script>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-header">
+        <!-- Header Section -->
+        <header class="chat-header">
             <div class="logo">
                 <i class="fas fa-robot"></i>
                 <h1>Ask Zeno</h1>
             </div>
-            <div class="theme-toggle">
-                <i class="fas fa-moon" id="theme-toggle-btn"></i>
+            <div class="theme-toggle" id="theme-toggle-btn">
+                <i class="fas fa-moon"></i>
             </div>
-        </div>
-        <div class="chat-messages" id="chat-messages"></div>
-        <div class="file-preview" id="file-preview"></div>
-        <div class="chat-input">
+        </header>
+
+        <!-- Chat Messages Section -->
+        <section class="chat-messages" id="chat-messages"></section>
+
+        <!-- File Upload Preview Section -->
+        <section class="file-preview" id="file-preview"></section>
+
+        <!-- Chat Input Section -->
+        <footer class="chat-input">
             <div class="input-actions">
-                <label for="file-upload" class="file-upload-label">
+                <!-- File Upload -->
+                <label for="file-upload" class="file-upload-label" aria-label="Attach file">
                     <i class="fas fa-paperclip"></i>
                 </label>
-                <input type="file" id="file-upload" accept=".txt,.js,.py,.html,.css,.json,image/*" multiple>
+                <input type="file" id="file-upload" accept=".txt,.js,.py,.html,.css,.json,image/*" multiple aria-label="Choose files" />
             </div>
-            <textarea id="user-input" placeholder="Ask Zeno anything..."></textarea>
-            <button onclick="sendMessage()">
+            <!-- Textarea for User Input -->
+            <textarea id="user-input" placeholder="Ask Zeno anything..." aria-label="Type your message"></textarea>
+
+            <!-- Send Message Button -->
+            <button onclick="sendMessage()" aria-label="Send message">
                 <i class="fas fa-paper-plane"></i>
             </button>
-        </div>
+        </footer>
     </div>
-    <!-- Load scripts at the end of body -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
-    <script src="script.js"></script>
+
+    <!-- Load scripts at the end of body for faster page load -->
+    <script src="script.js" defer></script>
 </body>
 </html>
