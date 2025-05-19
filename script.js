@@ -24,20 +24,20 @@ function toggleTheme() {
 async function handleFileUpload(e) {
     const files = Array.from(e.target.files);
     const filePreview = document.getElementById('file-preview');
-    
+
     for (const file of files) {
         const reader = new FileReader();
-        
+
         reader.onload = async function(event) {
             const fileData = {
                 name: file.name,
                 type: file.type,
                 content: event.target.result,
-                language: detectLanguage(file.name)
+                language: detectLanguage(file.name),
             };
-            
+
             uploadedFiles.push(fileData);
-            
+
             const previewItem = document.createElement('div');
             previewItem.className = 'preview-item';
             previewItem.innerHTML = `
@@ -45,10 +45,9 @@ async function handleFileUpload(e) {
                 <span>${file.name}</span>
                 <span class="remove-file" onclick="removeFile('${file.name}')">×</span>
             `;
-            
             filePreview.appendChild(previewItem);
         };
-        
+
         if (file.type.includes('image')) {
             reader.readAsDataURL(file);
         } else {
@@ -65,7 +64,7 @@ function removeFile(fileName) {
 function updateFilePreview() {
     const filePreview = document.getElementById('file-preview');
     filePreview.innerHTML = '';
-    
+
     uploadedFiles.forEach(file => {
         const previewItem = document.createElement('div');
         previewItem.className = 'preview-item';
@@ -85,7 +84,7 @@ async function sendMessage() {
     if (message === '' && uploadedFiles.length === 0) return;
 
     let messageContent = message;
-    
+
     // Prepare message with files
     if (uploadedFiles.length > 0) {
         messageContent += '\n\nFiles attached:\n';
@@ -96,7 +95,7 @@ async function sendMessage() {
                 messageContent += `\n\nFile: ${file.name}\nLanguage: ${file.language}\nContent:\n${file.content}`;
             }
         });
-        
+
         if (message.toLowerCase().includes('fix') || message.toLowerCase().includes('correct')) {
             messageContent += '\n\nPlease fix the code and provide the corrected version.';
         }
@@ -104,7 +103,7 @@ async function sendMessage() {
 
     appendMessage('user', messageContent, uploadedFiles);
     userInput.value = '';
-    
+
     // Clear file preview and uploaded files
     document.getElementById('file-preview').innerHTML = '';
     const oldFiles = [...uploadedFiles];
@@ -130,11 +129,15 @@ async function sendMessage() {
             body: JSON.stringify({
                 contents: [{
                     parts: [{
-                        text: messageContent
-                    }]
-                }]
-            })
+                        text: messageContent,
+                    }],
+                }],
+            }),
         });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch response from Gemini API');
+        }
 
         const data = await response.json();
         const botResponse = data.candidates[0].content.parts[0].text;
@@ -182,12 +185,12 @@ function appendMessage(sender, text, files = []) {
     messageDiv.querySelectorAll('pre code').forEach((block) => {
         const wrapper = document.createElement('div');
         wrapper.className = 'code-block';
-        
+
         const language = block.className.split('-')[1];
         const languageLabel = document.createElement('div');
         languageLabel.className = 'language-label';
         languageLabel.textContent = language || 'text';
-        
+
         const copyButton = document.createElement('button');
         copyButton.className = 'copy-button';
         copyButton.innerHTML = '<i class="fas fa-copy"></i>';
