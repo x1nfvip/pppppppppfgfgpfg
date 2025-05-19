@@ -1,10 +1,12 @@
 :root {
     --primary-color: #4285f4;
+    --secondary-color: #34a853;
     --bg-color: #ffffff;
     --text-color: #333333;
     --message-bg-user: #e3f2fd;
     --message-bg-bot: #f8f9fa;
     --code-bg: #282c34;
+    --button-hover-color: #3a75f7;
 }
 
 .dark-theme {
@@ -12,6 +14,7 @@
     --text-color: #ffffff;
     --message-bg-user: #2c3e50;
     --message-bg-bot: #2d2d2d;
+    --button-hover-color: #6a88f5;
 }
 
 * {
@@ -36,6 +39,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 95vh;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -46,6 +50,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -61,12 +66,18 @@ body {
 .theme-toggle i {
     font-size: 20px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle i:hover {
+    transform: rotate(180deg);
 }
 
 .chat-messages {
     flex-grow: 1;
     padding: 20px;
     overflow-y: auto;
+    background-color: var(--bg-color);
 }
 
 .message {
@@ -80,11 +91,13 @@ body {
 .user-message {
     background-color: var(--message-bg-user);
     margin-left: auto;
+    border-radius: 15px 15px 0 10px;
 }
 
 .bot-message {
     background-color: var(--message-bg-bot);
     margin-right: auto;
+    border-radius: 15px 15px 0 10px;
 }
 
 .chat-input {
@@ -92,6 +105,8 @@ body {
     border-top: 1px solid rgba(0,0,0,0.1);
     display: flex;
     gap: 10px;
+    align-items: center;
+    background-color: var(--bg-color);
 }
 
 textarea {
@@ -104,11 +119,12 @@ textarea {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 textarea:focus {
     border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
     outline: none;
 }
 
@@ -119,11 +135,12 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.3s ease;
 }
 
 button:hover {
     transform: scale(1.05);
+    background-color: var(--button-hover-color);
 }
 
 .loading-animation {
@@ -158,6 +175,9 @@ pre code {
     margin: 10px 0;
     font-size: 14px;
     position: relative;
+    background-color: var(--code-bg);
+    color: #f8f8f2;
+    overflow-x: auto;
 }
 
 .copy-button {
@@ -171,6 +191,11 @@ pre code {
     color: #fff;
     font-size: 12px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.copy-button:hover {
+    background-color: rgba(255,255,255,0.3);
 }
 
 .code-block {
@@ -195,6 +220,7 @@ pre code {
     flex-wrap: wrap;
     gap: 10px;
     border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: var(--bg-color);
 }
 
 .preview-item {
@@ -205,6 +231,7 @@ pre code {
     display: flex;
     align-items: center;
     gap: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .preview-item img {
