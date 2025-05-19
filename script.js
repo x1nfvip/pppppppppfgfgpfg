@@ -1,5 +1,5 @@
-const API_KEY = 'AIzaSyBAt5k-jHg8zoOxAA9t0kJ7KfzHzVa_iRc';
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const API_KEY = 'AIzaSyCtsWdK-GxSIqtfnQqQs2CjYbKoOHSEwVE';
+const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 let isDarkMode = false;
 let uploadedFiles = [];
